@@ -23,6 +23,9 @@
             </intent-filter>
         </activity>
         <activity android:name="com.dawdlerlweather.app.activity.WeatherActivity"></activity>
+        <service android:name="com.dawdlerlweather.app.service.AutoUpdateService"></service>
+        <receiver android:name="com.dawdlerlweather.app.receiver.AutoUpdateReceiver"></receiver>
+        
     </application>
 
 </manifest>

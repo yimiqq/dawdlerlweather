@@ -1,6 +1,7 @@
 package com.dawdlerlweather.app.activity;
 
 import com.dawdlerlweather.app.R;
+import com.dawdlerlweather.app.service.AutoUpdateService;
 import com.dawdlerlweather.app.util.HttpCallbackListener;
 import com.dawdlerlweather.app.util.HttpUtil;
 import com.dawdlerlweather.app.util.Utility;
@@ -162,15 +163,17 @@ public class WeatherActivity extends Activity implements OnClickListener {
 	* 从SharedPreferences文件中读取存储的天气信息，并显示到界面上。
 	*/
 	private void showWeather() {
-	SharedPreferences prefs = PreferenceManager.
-	getDefaultSharedPreferences(this);
-	cityNameText.setText( prefs.getString("city_name", ""));
-	temp1Text.setText(prefs.getString("temp1", ""));
-	temp2Text.setText(prefs.getString("temp2", ""));
-	weatherDespText.setText(prefs.getString("weather_desp", ""));
-	publishText.setText("今天" + prefs.getString("publish_time", "") + "发布");
-	currentDateText.setText(prefs.getString("current_date", ""));
-	weatherInfoLayout.setVisibility(View.VISIBLE);
-	cityNameText.setVisibility(View.VISIBLE);
+		SharedPreferences prefs = PreferenceManager.
+				getDefaultSharedPreferences(this);
+		cityNameText.setText( prefs.getString("city_name", ""));
+		temp1Text.setText(prefs.getString("temp1", ""));
+		temp2Text.setText(prefs.getString("temp2", ""));
+		weatherDespText.setText(prefs.getString("weather_desp", ""));
+		publishText.setText("今天" + prefs.getString("publish_time", "") + "发布");
+		currentDateText.setText(prefs.getString("current_date", ""));
+		weatherInfoLayout.setVisibility(View.VISIBLE);
+		cityNameText.setVisibility(View.VISIBLE);
+		Intent intent = new Intent(this,AutoUpdateService.class);
+		startService(intent);
 	}
 	}
